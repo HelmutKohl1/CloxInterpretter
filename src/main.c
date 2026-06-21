@@ -12,7 +12,7 @@ static void repl() {
 	for (;;) {
 		printf("> ");
 		
-		if (!fgets(line, sizeof(line), stdin) {
+		if (!fgets(line, sizeof(line), stdin)) {
 			printf("\n");
 			break;
 		}
@@ -39,7 +39,7 @@ static char* readFile(const char* path) {
 	}
 	
 	size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
-	if (bytesRead < fileRead) {
+	if (bytesRead < fileSize) {
 		fprintf(stderr, "Could not read file \"%s\".\n", path);
 		exit(74);
 	}

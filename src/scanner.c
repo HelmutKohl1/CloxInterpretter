@@ -97,7 +97,7 @@ static void skipWhitespace() {
 }
 
 static TokenType checkKeyword(int start, int length, const char* rest, TokenType type) {
-	if ((scanner.current - scanner.start == start + length) && (memcmp(scanner.start + start, rest, length) == 0) {
+	if ((scanner.current - scanner.start == start + length) && (memcmp(scanner.start + start, rest, length) == 0)) {
 		return type;
 	}
 	return TOKEN_IDENTIFIER;
@@ -132,7 +132,7 @@ static TokenType identifierType() {
 			}
 			break;
 		case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
-		case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHLE);
+		case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
 	}
 	return TOKEN_IDENTIFIER;
 }
@@ -162,7 +162,7 @@ static Token string() {
 		advance();
 	}
 	
-	if (!isAtEnd()) return errorToken("Unterminated string.");
+	if (isAtEnd()) return errorToken("Unterminated string.");
 	
 	// the closing quote
 	advance();
@@ -196,6 +196,6 @@ Token scanToken() {
 		case '<': return makeToken( match('=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
 		case '>': return makeToken( match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
 		case '"': return string();
-	
+	}
 	return errorToken("Unexpected character.");
 }

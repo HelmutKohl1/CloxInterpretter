@@ -14,7 +14,7 @@ RMDIR := rd /s /q
 
 CC       := gcc
 CPPFLAGS := -I$(INC_DIR) -MMD -MP
-CFLAGS   := -Wall -Werror -Wextra -std=c99 -pedantic -O2
+CFLAGS   := -Wall -Werror -Wextra -std=c99 -pedantic -O2 -Wno-unused-function
 LDFLAGS  := -L$(LIB_DIR)
 LDLIBS   := -lm -static $(patsubst $(LIB_DIR)\lib*.a, -l$(LIB_DIR)\*, $(wildcard $(LIB_DIR)/lib*.a))
 
